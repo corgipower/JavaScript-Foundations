@@ -34,6 +34,27 @@ let monthlyRate = principal * ((monthlyInterestRate * exp) / (exp -1));
 /* Create a function called `mortgageCalculator` that combines all of the steps from task 1 and 2 and returns a sentence "{Name}, your monthly rate is ${monthlyRate}"
 
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
+*/function mortgageCalculator() {
+    let principal = 200000;
+    let interestRate = .05;
+    let years = 30;
+    let name = "Liz";
+
+    let monthlyInterestRate = interestRate / 12 ;
+    let periods = years * 12;
+
+    let exp = Math.pow((1 + monthlyInterestRate), periods);
+    let monthlyRate = principal * ((monthlyInterestRate * exp) / (exp -1));
+    
+    return `${name}, your monthly rate is ${monthlyRate}`;
+}
+
+
+// 🏡 Task 4: Arguments and Parameters
+/* Substitute the variables in your functions for parameters such that you can substitute `P`, `I`, and `N` when you call the function.
+
+For example,
+mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
 */
 function mortgageCalculator(p, i, y, name) {
     let monthlyInterestRate = i / 12 ;
@@ -46,14 +67,6 @@ function mortgageCalculator(p, i, y, name) {
     return `${name}, your monthly rate is ${monthlyRate}`;
 }
 
-// 🏡 Task 4: Arguments and Parameters
-/* Substitute the variables in your functions for parameters such that you can substitute `P`, `I`, and `N` when you call the function.
-
-For example,
-mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
-*/
-
-
 
 
 
@@ -62,6 +75,26 @@ mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
 
 Then, add control flow within your function such that IF creditScore is above 740, interest rate drops by 0.5%, if credit score is below 660, interest rate increases by 0.5% and if credit score is anywhere between 660 and 740 interest rate doesn't change.
 */
+
+function mortgageCalculator(p, i, y, creditScore, name) {
+    
+    if (creditScore > 740) {
+        i -= .005; 
+    } else if (creditScore < 660) {
+        i += .005;
+    } else {
+        i = i;
+    }
+    
+    let monthlyInterestRate = i / 12 ;
+    let periods = y * 12;
+
+    let exp = Math.pow((1 + monthlyInterestRate), periods);
+    
+    let monthlyRate = p * ((monthlyInterestRate * exp) / (exp -1));
+
+    return `${name}, your monthly rate is ${monthlyRate}`;
+}
 
 
 
@@ -81,9 +114,23 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.055, your monthly rate is $1136"
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
+function variableInterestRate(p, i, y, name) {
+    i -= .02
 
+    for (count = 0; count < 9; count++){
+    let monthlyInterestRate = i / 12 ;
+    let periods = y * 12;
 
-
+    let exp = Math.pow((1 + monthlyInterestRate), periods);
+    
+    let monthlyRate = p * ((monthlyInterestRate * exp) / (exp -1));
+    let rate = Math.round(monthlyRate);
+    
+    let rounded = (Math.round(i *1000))/1000;
+    console.log(`${name}, with an interest rate of ${rounded}, youy monthly rate is ${rate}`);
+    i += .005;
+    }
+}
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
 
