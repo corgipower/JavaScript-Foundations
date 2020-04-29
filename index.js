@@ -144,5 +144,11 @@ function variableInterestRate(p, i, y, name) {
 
 /* 🏡 Explore using `window.prompt()` to allow a user to input parameters in the browser */
 
+function getName() {
+    let name = prompt("Enter your name");
+    if (name != null) {
+      document.getElementById("outputName").innerHTML = "Hello, " + name; 
+  }
+}
 
 /* 🏡  Refactor your `variableInterestRate()` function to accept an array of interest rates (make sure to copy and paste as to not lose your work!) */
